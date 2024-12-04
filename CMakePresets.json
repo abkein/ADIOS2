@@ -1,0 +1,56 @@
+{
+    "version": 10,
+    "configurePresets": [
+        {
+            "name": "full",
+            "hidden": false,
+            "description": "local kein's configuration preset",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+                "CMAKE_CXX_FLAGS": "-Ofast",
+                "CMAKE_C_FLAGS": "-Ofast",
+                "ADIOS2_USE_MPI": "ON",
+                "ADIOS2_USE_HDF5": "OFF",
+                "ADIOS2_USE_Fortran": "OFF",
+                "ADIOS2_USE_PIP": "ON",
+                "ADIOS2_USE_Python": "ON",
+                "ADIOS2_BUILD_EXAMPLES": "OFF",
+                "BUILD_SHARED_LIBS": "ON",
+                "BUILD_TESTING": "OFF",
+                "Python_EXECUTABLE": "$env{VIRTUAL_ENV}/bin/python3",
+                "CMAKE_INSTALL_PREFIX": "$env{VIRTUAL_ENV}"
+            },
+            "environment": {},
+            "generator": "Unix Makefiles",
+            "binaryDir": "./build"
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "full",
+            "description": "local kein's build preset",
+            "configurePreset": "full",
+            "cleanFirst": true,
+            "targets": [
+                "all"
+            ],
+            "inheritConfigureEnvironment": true,
+            "jobs": 8
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "full",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "full"
+                },
+                {
+                    "type": "build",
+                    "name": "full"
+                }
+            ]
+        }
+    ]
+}
